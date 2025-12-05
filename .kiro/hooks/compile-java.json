@@ -1,0 +1,14 @@
+{
+  "name": "Compile Java Sources",
+  "description": "Automatically compile Java files when source code is saved",
+  "trigger": {
+    "type": "onFileSave",
+    "filePattern": "src/**/*.java"
+  },
+  "action": {
+    "type": "command",
+    "command": "javac -cp acm.jar -d bin src/**/*.java",
+    "workingDirectory": "."
+  },
+  "enabled": true
+}

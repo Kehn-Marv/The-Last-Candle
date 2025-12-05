@@ -1,0 +1,14 @@
+{
+  "name": "Asset Optimization Check",
+  "description": "Check for unoptimized assets when new images are added",
+  "trigger": {
+    "type": "manual",
+    "label": "🖼️ Check Asset Sizes"
+  },
+  "action": {
+    "type": "command",
+    "command": "dir /s res\\*.png",
+    "workingDirectory": "."
+  },
+  "enabled": true
+}

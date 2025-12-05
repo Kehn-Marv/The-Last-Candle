@@ -1,0 +1,14 @@
+{
+  "name": "Start Gameplay Test Session",
+  "description": "Launch the game for manual playtesting and bug discovery",
+  "trigger": {
+    "type": "manual",
+    "label": "🎃 Launch Game"
+  },
+  "action": {
+    "type": "command",
+    "command": "java -jar acm.jar",
+    "workingDirectory": "."
+  },
+  "enabled": true
+}

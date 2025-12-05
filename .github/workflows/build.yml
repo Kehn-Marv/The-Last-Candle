@@ -1,0 +1,86 @@
+name: Build Windows Installer
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      
+      - name: Compile Java sources
+        shell: cmd
+        run: |
+          if not exist bin mkdir bin
+          javac -cp acm.jar -d bin src\Boilerplate\*.java src\Entity\*.java src\GamePanes\*.java src\Item\*.java
+      
+      - name: Create JAR manifest
+        shell: cmd
+        run: |
+          echo Main-Class: Boilerplate.MainApplication > manifest.txt
+          echo Class-Path: acm.jar >> manifest.txt
+      
+      - name: Copy resources to bin
+        shell: cmd
+        run: xcopy /E /I res bin\res
+      
+      - name: Build JAR file
+        shell: cmd
+        run: jar cfm TheLastCandle.jar manifest.txt -C bin .
+      
+      - name: Copy ACM library
+        shell: cmd
+        run: copy acm.jar .
+      
+      - name: Create Windows installer with jpackage
+        shell: cmd
+        run: |
+          jpackage --input . --name "TheLastCandle" --main-jar TheLastCandle.jar --main-class Boilerplate.MainApplication --type exe --app-version 1.0.0 --vendor "TheLastCandleTeam" --description "A psychological horror adventure game" --win-dir-chooser --win-menu --win-shortcut
+      
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installer
+          path: "*.exe"
+      
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "*.exe"
+          body: |
+            # The Last Candle - Windows Installer
+            
+            🕯️ A psychological horror adventure game built with Kiro AI
+            
+            ## Installation
+            1. Download the `.exe` file below
+            2. Run the installer
+            3. Follow the installation wizard
+            4. Launch "The Last Candle" from Start Menu or Desktop shortcut
+            
+            ## Controls
+            - **WASD** or **Arrow Keys**: Move player
+            - **Mouse**: Click inventory items and menu buttons
+            - **ESC**: Pause menu
+            
+            ## System Requirements
+            - Windows 10 or later
+            - Java Runtime Environment (included in installer)
+            
+            ---
+            Built with ❤️ and Kiro AI for Kiroween Hackathon
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

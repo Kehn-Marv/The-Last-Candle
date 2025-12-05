@@ -1,0 +1,13 @@
+{
+  "name": "Sync Web Port",
+  "description": "Remind to update JavaScript port when Java entity classes change",
+  "trigger": {
+    "type": "onFileSave",
+    "filePattern": "src/Entity/*.java"
+  },
+  "action": {
+    "type": "message",
+    "message": "Entity class modified. Remember to update corresponding JavaScript classes in web/main.js to maintain feature parity between Java and web versions."
+  },
+  "enabled": true
+}

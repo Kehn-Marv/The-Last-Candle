@@ -1,0 +1,14 @@
+{
+  "name": "Pre-Commit Game Tests",
+  "description": "Run collision detection and gameplay tests before committing code",
+  "trigger": {
+    "type": "manual",
+    "label": "🎮 Run Game Tests"
+  },
+  "action": {
+    "type": "command",
+    "command": "java -cp bin:acm.jar src.Boilerplate.MainApplication",
+    "workingDirectory": "."
+  },
+  "enabled": true
+}

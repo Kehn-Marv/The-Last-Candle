@@ -1,0 +1,25 @@
+{
+  "project": {
+    "name": "The Last Candle",
+    "type": "game",
+    "language": "java",
+    "framework": "ACM Graphics",
+    "version": "1.0.0"
+  },
+  "kiro": {
+    "specsEnabled": true,
+    "hooksEnabled": true,
+    "steeringEnabled": true,
+    "autoCompile": true
+  },
+  "development": {
+    "targetFPS": 60,
+    "canvasWidth": 800,
+    "canvasHeight": 640,
+    "debugMode": false
+  },
+  "hackathon": {
+    "event": "Kiroween",
+    "category": "Costume Contest"
+  }
+}

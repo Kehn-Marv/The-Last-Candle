@@ -1,0 +1,14 @@
+{
+  "name": "Start Web Development Server",
+  "description": "Launch local web server to test HTML5 Canvas version",
+  "trigger": {
+    "type": "manual",
+    "label": "🌐 Start Web Server"
+  },
+  "action": {
+    "type": "command",
+    "command": "python -m http.server 8000",
+    "workingDirectory": "."
+  },
+  "enabled": true
+}
