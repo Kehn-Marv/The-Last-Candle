@@ -32,18 +32,23 @@ jobs:
           echo Main-Class: Boilerplate.MainApplication > manifest.txt
           echo Class-Path: acm.jar >> manifest.txt
       
-      - name: Copy resources to bin
+      - name: Build JAR file with resources
         shell: cmd
-        run: xcopy /E /I res bin\res
+        run: |
+          jar cfm TheLastCandle.jar manifest.txt -C bin . res
       
-      - name: Build JAR file
+      - name: Create app directory for jpackage
         shell: cmd
-        run: jar cfm TheLastCandle.jar manifest.txt -C bin .
+        run: |
+          if not exist app mkdir app
+          copy TheLastCandle.jar app\
+          copy acm.jar app\
+          xcopy /E /I res app\res
       
       - name: Create Windows installer with jpackage
         shell: cmd
         run: |
-          jpackage --input . --name "TheLastCandle" --main-jar TheLastCandle.jar --main-class Boilerplate.MainApplication --type exe --app-version 1.0.0 --vendor "TheLastCandleTeam" --description "A psychological horror adventure game" --win-dir-chooser --win-menu --win-shortcut
+          jpackage --input app --name "TheLastCandle" --main-jar TheLastCandle.jar --main-class Boilerplate.MainApplication --type exe --app-version 1.0.0 --vendor "TheLastCandleTeam" --description "A psychological horror adventure game" --win-dir-chooser --win-menu --win-shortcut
       
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
