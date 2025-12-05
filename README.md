@@ -10,6 +10,8 @@ A psychological horror adventure game built with Java ACM Graphics and ported to
 
 ## 🎃 Kiroween Hackathon Submission
 
+![Kiroween](Kiroween.png)
+
 **Category**: Costume Contest - Haunting User Interface
 
 ### 💾 Download & Play
