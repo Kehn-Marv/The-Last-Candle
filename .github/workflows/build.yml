@@ -24,31 +24,41 @@ jobs:
         shell: cmd
         run: |
           if not exist bin mkdir bin
-          javac -cp acm.jar -d bin src\Launcher.java
           javac -cp acm.jar -d bin src\Boilerplate\*.java src\Entity\*.java src\GamePanes\*.java src\Item\*.java
       
       - name: Create JAR manifest
         shell: cmd
         run: |
-          echo Main-Class: Launcher > manifest.txt
+          echo Main-Class: Boilerplate.MainApplication > manifest.txt
           echo Class-Path: acm.jar >> manifest.txt
       
-      - name: Build JAR file with resources
+      - name: Copy resources to bin
         shell: cmd
-        run: |
-          jar cfm TheLastCandle.jar manifest.txt -C bin . res
+        run: xcopy /E /I res bin\res
       
-      - name: Create app directory for jpackage
+      - name: Build JAR file
+        shell: cmd
+        run: jar cfm TheLastCandle.jar manifest.txt -C bin .
+      
+      - name: Create app directory
         shell: cmd
         run: |
           if not exist app mkdir app
           copy TheLastCandle.jar app\
           copy acm.jar app\
+          xcopy /E /I res app\res
       
-      - name: Create Windows installer with jpackage
+      - name: Create launcher script
         shell: cmd
         run: |
-          jpackage --input app --name "TheLastCandle" --main-jar TheLastCandle.jar --main-class Launcher --type exe --app-version 1.0.0 --vendor "TheLastCandleTeam" --description "A psychological horror adventure game" --win-dir-chooser --win-menu --win-shortcut
+          echo @echo off > app\TheLastCandle.bat
+          echo cd /d "%%~dp0" >> app\TheLastCandle.bat
+          echo java -cp "TheLastCandle.jar;acm.jar" Boilerplate.MainApplication >> app\TheLastCandle.bat
+      
+      - name: Create Windows installer
+        shell: cmd
+        run: |
+          jpackage --input app --name "TheLastCandle" --main-jar TheLastCandle.jar --main-class Boilerplate.MainApplication --type exe --app-version 1.0.0 --vendor "TheLastCandleTeam" --description "A psychological horror adventure game" --win-dir-chooser --win-menu --win-shortcut --resource-dir app
       
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
