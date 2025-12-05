@@ -47,10 +47,10 @@ You wake up in a dark house with only 3 HP and a flickering candle. As you explo
 
 ## 🚀 Quick Start
 
-### Option 1: Windows Installer (Recommended)
-1. Download the `.exe` installer from [Releases](../../releases/latest)
-2. Run the installer and follow the wizard
-3. Launch from Start Menu or Desktop shortcut
+### Option 1: Windows ZIP (Recommended)
+1. Download `TheLastCandle-Windows.zip` from [Releases](../../releases/latest)
+2. Extract the ZIP file
+3. Double-click `run.bat` to play
 
 ### Option 2: Java Version (All Platforms)
 ```bash

@@ -1,4 +1,4 @@
-name: Build Windows Installer
+name: Build Windows Release
 
 on:
   push:
@@ -40,47 +40,49 @@ jobs:
         shell: cmd
         run: jar cfm TheLastCandle.jar manifest.txt -C bin .
       
-      - name: Create app directory
+      - name: Create release package
         shell: cmd
         run: |
-          if not exist app mkdir app
-          copy TheLastCandle.jar app\
-          copy acm.jar app\
-          xcopy /E /I res app\res
+          if not exist release mkdir release
+          copy TheLastCandle.jar release\
+          copy acm.jar release\
+          xcopy /E /I res release\res
+          echo @echo off > release\run.bat
+          echo java -cp "TheLastCandle.jar;acm.jar" Boilerplate.MainApplication >> release\run.bat
+          echo @echo off > release\README.txt
+          echo The Last Candle - Horror Adventure Game >> release\README.txt
+          echo. >> release\README.txt
+          echo To play: Double-click run.bat >> release\README.txt
+          echo. >> release\README.txt
+          echo Controls: >> release\README.txt
+          echo - WASD or Arrow Keys: Move >> release\README.txt
+          echo - Mouse: Click items and buttons >> release\README.txt
+          echo - ESC: Pause menu >> release\README.txt
       
-      - name: Create launcher script
-        shell: cmd
-        run: |
-          echo @echo off > app\TheLastCandle.bat
-          echo cd /d "%%~dp0" >> app\TheLastCandle.bat
-          echo java -cp "TheLastCandle.jar;acm.jar" Boilerplate.MainApplication >> app\TheLastCandle.bat
+      - name: Create ZIP archive
+        shell: pwsh
+        run: Compress-Archive -Path release\* -DestinationPath TheLastCandle-Windows.zip
       
-      - name: Create Windows installer
-        shell: cmd
-        run: |
-          jpackage --input app --name "TheLastCandle" --main-jar TheLastCandle.jar --main-class Boilerplate.MainApplication --type exe --app-version 1.0.0 --vendor "TheLastCandleTeam" --description "A psychological horror adventure game" --win-dir-chooser --win-menu --win-shortcut --resource-dir app
-      
-      - name: Upload installer artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: windows-installer
-          path: "*.exe"
+          name: windows-release
+          path: "TheLastCandle-Windows.zip"
       
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
-          files: "*.exe"
+          files: "TheLastCandle-Windows.zip"
           body: |
-            # The Last Candle - Windows Installer
+            # The Last Candle - Windows Release
             
             🕯️ A psychological horror adventure game built with Kiro AI
             
-            ## Installation
-            1. Download the `.exe` file below
-            2. Run the installer
-            3. Follow the installation wizard
-            4. Launch "The Last Candle" from Start Menu or Desktop shortcut
+            ## Quick Start
+            1. Download `TheLastCandle-Windows.zip`
+            2. Extract the ZIP file
+            3. Double-click `run.bat` to play
             
             ## Controls
             - **WASD** or **Arrow Keys**: Move player
@@ -89,7 +91,7 @@ jobs:
             
             ## System Requirements
             - Windows 10 or later
-            - Java Runtime Environment (included in installer)
+            - Java 11 or higher (download from java.com if needed)
             
             ---
             Built with ❤️ and Kiro AI for Kiroween Hackathon
