@@ -40,10 +40,6 @@ jobs:
         shell: cmd
         run: jar cfm TheLastCandle.jar manifest.txt -C bin .
       
-      - name: Copy ACM library
-        shell: cmd
-        run: copy acm.jar .
-      
       - name: Create Windows installer with jpackage
         shell: cmd
         run: |
