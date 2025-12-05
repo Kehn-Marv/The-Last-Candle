@@ -1,13 +1,12 @@
+![Kiroween Hackathon](https://img.shields.io/badge/Kiroween_Hackathon-Costume_Contest-indigo?style=for-the-badge) [![License](https://img.shields.io/github/license/Kehn-Marv/The-Last-Candle?style=for-the-badge&color=orange)](LICENSE) ![GitHub repo size](https://img.shields.io/github/repo-size/Kehn-Marv/The-Last-Candle?style=for-the-badge) ![GitHub last commit](https://img.shields.io/github/last-commit/Kehn-Marv/The-Last-Candle?style=for-the-badge)
+
+![The Last Candle](web/the-last-candle.png)
+
 # 🕯️ The Last Candle
 
 *"In the darkness, only one candle remains..."*
 
 A psychological horror adventure game built with Java ACM Graphics and ported to HTML5 Canvas. Navigate through a haunted house, make moral choices, and discover one of three possible endings.
-
-![Category](https://img.shields.io/badge/Kiroween-Costume%20Contest-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
-![Java](https://img.shields.io/badge/Java-ACM%20Graphics-red?style=for-the-badge)
-![JavaScript](https://img.shields.io/badge/JavaScript-HTML5%20Canvas-yellow?style=for-the-badge)
 
 ## 🎃 Kiroween Hackathon Submission
 
@@ -75,9 +74,13 @@ python -m http.server 8000
 - **Mouse**: Click inventory items and menu buttons
 - **ESC**: Pause menu (during gameplay)
 
+## 🛠️ Technology Stack
+
+![](https://skills.syvixor.com/api/icons?perline=11&i=kiro,java,javascript,html,css,git,github,vscode)
+
 ## 🛠️ Built With Kiro
 
-This entire project was developed using [Kiro](https://kiro.ai), an AI-powered IDE that partnered with me throughout the development process. Here's how Kiro's features were instrumental:
+This entire project was developed using Kiro, an AI-powered IDE that partnered with me throughout the development process. Here's how Kiro's features were instrumental:
 
 ### 📝 Spec-Driven Development
 
@@ -162,52 +165,6 @@ Created custom steering rules to maintain consistency:
    - Narrative ambiguity guidelines
 
 These steering docs ensured Kiro understood the project's unique requirements and generated code that fit the horror aesthetic and technical architecture.
-
-### 🔄 Iterative Development Process
-
-**Typical development cycle with Kiro**:
-1. **Spec Phase**: Define feature in requirements.md
-2. **Design Phase**: Kiro proposes architecture in design.md
-3. **Task Breakdown**: Create granular tasks with file checklists
-4. **Implementation**: Vibe code with Kiro for rapid generation
-5. **Hook Automation**: Auto-compile and test on save
-6. **Iteration**: Refine based on playtesting feedback
-
-**Example: Inventory System**
-```
-Day 1: Wrote AC-3 requirements (pickup, display, selection)
-Day 1: Kiro designed Inventory class with hotbar rendering
-Day 2: Implemented Item.java and Inventory.java via spec tasks
-Day 2: Vibe coded the red selection box and description text
-Day 3: Hook auto-compiled on save, caught null pointer bug
-Day 3: Playtested, asked Kiro to adjust item spacing
-Day 3: ✅ Inventory system complete and polished
-```
-
-### 📊 Development Statistics
-
-- **Total Specs**: 2 (game-architecture, web-port)
-- **Total Tasks**: 41 (all completed ✓)
-- **Acceptance Criteria**: 17
-- **Correctness Properties**: 17
-- **Steering Documents**: 2
-- **Agent Hooks**: 6
-- **Lines of Code**: ~3,500 (Java + JavaScript)
-- **Development Time**: Accelerated by 3-4x with Kiro
-
-### 💡 Key Learnings
-
-**What worked exceptionally well**:
-- **Specs for complex systems**: Entity hierarchy and room transitions benefited from upfront design
-- **Vibe coding for UI polish**: Describing visual effects in natural language was faster than manual coding
-- **Hooks for compilation**: Instant feedback loop caught errors before they compounded
-- **Steering for consistency**: Horror design principles kept the aesthetic cohesive
-
-**Kiro's standout moments**:
-1. Generated the entire Monster AI pathfinding in one shot after describing "chase player but slower"
-2. Translated 15 Java classes to JavaScript equivalents while maintaining architecture
-3. Suggested the red highlight box for inventory selection (I hadn't thought of it!)
-4. Caught a collision detection bug by analyzing the getBounds() logic
 
 ## 🎨 Game Design
 
@@ -314,18 +271,6 @@ the-last-candle/
 - Efficient sprite caching and reuse
 - Minimal memory footprint
 
-## 🎬 Demo Video
-
-[3-minute demonstration video showcasing gameplay, UI, and endings]
-
-**Video highlights**:
-- 0:00 - Main menu and atmospheric UI
-- 0:30 - Player movement and inventory system
-- 1:00 - NPC interaction and moral choice
-- 1:30 - Monster encounter and combat
-- 2:00 - Room transitions and exploration
-- 2:30 - Multiple endings showcase
-
 ## 🔮 Future Enhancements
 
 - Additional rooms and expanded map
@@ -338,34 +283,7 @@ the-last-candle/
 
 ## 📜 License
 
-MIT License
-
-Copyright (c) The Last Candle Development Team
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-## 🙏 Acknowledgments
-
-- **Kiro AI**: For being an incredible development partner throughout this project
-- **ACM Graphics Library**: For providing an accessible game development framework
-- **Press Start K Font**: For the perfect retro horror aesthetic
-- **Kiroween Hackathon**: For the inspiration to create something spooky
+MIT License - See [LICENSE](LICENSE) file for details.
 
 ## 👻 About
 
